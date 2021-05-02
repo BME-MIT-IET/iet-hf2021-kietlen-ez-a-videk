@@ -9,4 +9,4 @@ Az első a kivételekkel kapcsolatos. Számos helyen írta a SonarLint, hogy az 
 A feltételes operátor egymásba ágyazására is jelzett hibát. A kód így szinte olvashatatlan, nehezen érthető volt, ezért egy if-else blokkba "kicsomagoltuk" a feltételes operátoros kifejezés külső részét, így már sokkal olvashatóbb lett a kód.
 
 **3.**
-A Java konvencióinak be nem tartásáért is kaptunk figyelmeztetéseket. Az osztályok deklarálásánál a static és abstract kulcsszavak voltak rossz sorrendben, ezeket javítottuk.
+Egy másik csoportba az apró hibák tartoznak. Például a Java konvencióinak be nem tartásáért is kaptunk figyelmeztetéseket. Az osztályok deklarálásánál a static és abstract kulcsszavak voltak rossz sorrendben, ezeket javítottuk. A main függvényre is kaptunk figyelmeztetést, itt csak a kivétel "eldobását" kellett kitörölni, hiszen a függvényen belül minden alapból try-catch blokkban van.
