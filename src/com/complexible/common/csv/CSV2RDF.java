@@ -119,8 +119,8 @@ public class CSV2RDF implements Runnable {
 			in.close();
 			out.close();
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception err) {
+			throw new CustomRuntimeExtension("An error with the files occured during runtime.", err);
 		}
 		System.out.printf("Converted %,d rows to %,d triples%n", inputRows, outputTriples);
 	}
@@ -434,4 +434,10 @@ public class CSV2RDF implements Runnable {
 			e.printStackTrace();
 		}
 	}
+}
+
+class CustomRuntimeExtension extends RuntimeException {
+    public CustomRuntimeExtension(String errorMessage, Throwable err) {
+        super(errorMessage, err);
+    }
 }
