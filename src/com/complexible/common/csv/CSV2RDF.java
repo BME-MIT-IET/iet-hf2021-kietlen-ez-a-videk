@@ -174,7 +174,7 @@ public class CSV2RDF implements Runnable {
 			return sb.toString();
 		}
 
-		private ValueProvider valueProviderFor(String varName, List<String> cols) throws Exception {
+		private ValueProvider valueProviderFor(String varName, List<String> cols) throws CreateValueProviderException {
 			if (varName.equalsIgnoreCase("_ROW_")) {
 				return new RowNumberProvider(); 
 			}
@@ -434,4 +434,10 @@ public class CSV2RDF implements Runnable {
 			e.printStackTrace();
 		}
 	}
+}
+
+class CreateValueProviderException extends Exception {
+	public CreateValueProviderException() {
+        super("An exception has been thrown failing to create value provider!");
+    }
 }
