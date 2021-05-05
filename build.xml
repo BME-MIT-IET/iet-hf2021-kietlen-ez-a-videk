@@ -101,7 +101,7 @@
 		</zip>
 	</target>
 
-	<target name="sonar">
+	<target name="sonar" depends="compile">
     <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
 			<classpath path="lib/sonarqube-ant-task-2.7.1.1951.jar" />
     </taskdef>
