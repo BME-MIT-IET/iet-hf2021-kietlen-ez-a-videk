@@ -102,12 +102,12 @@
 	</target>
 
 	<target name="sonar" depends="compile">
-    <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+		<taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
 			<classpath path="lib/sonarqube-ant-task-2.7.1.1951.jar" />
-    </taskdef>
+		</taskdef>
 
-    <!-- Execute SonarScanner for Ant Analysis -->
-    <sonar:sonar />
+		<!-- Execute SonarScanner for Ant Analysis -->
+		<sonar:sonar />
 	</target>
 
 </project>
