@@ -1,10 +1,13 @@
 package test;
 
 import com.complexible.common.csv.CSV2RDF;
+import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 import org.openrdf.rio.ParserConfig;
 import org.openrdf.rio.helpers.BasicParserSettings;
 
@@ -13,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class CSV2RDFTest {
 
     private CSV2RDF csv2rdf;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @BeforeEach
     public void setUp() throws Exception{
@@ -29,24 +35,29 @@ class CSV2RDFTest {
     @Test
     @DisplayName("Multiple letter to char conversion should fail")
     void testToCharWithMultipleChars() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        try {
             CSV2RDF.toChar("abc");
-        });
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
     }
 
     @Test
     @DisplayName("Empty string to char conversion should fail")
     void testToCharWithEmptyInput() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        try {
             CSV2RDF.toChar("");
-        });
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+        }
     }
 
     @Test
     @DisplayName("Test FAIL_ON_UNKNOWN_DATATYPES default configuration should be false")
     void testFailOnUnknownDataTypes() {
         ParserConfig config = CSV2RDF.getParserConfig();
-
         assertEquals(false, config.get(BasicParserSettings.FAIL_ON_UNKNOWN_DATATYPES));
     }
 
@@ -54,7 +65,6 @@ class CSV2RDFTest {
     @DisplayName("Test FAIL_ON_UNKNOWN_LANGUAGES default configuration should be false")
     void testFailOnUnknownLanguages() {
         ParserConfig config = CSV2RDF.getParserConfig();
-
         assertEquals(false, config.get(BasicParserSettings.FAIL_ON_UNKNOWN_LANGUAGES));
     }
 
