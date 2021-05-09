@@ -33,12 +33,12 @@ public class CSV2RDFTest {
 
     @AfterEach
     public void cleanup(){
-        File outputFile = new File(this.outputFile);
-        if(outputFile.exists()){
-            if (outputFile.delete()) {
-                logger.log(Level.INFO,"Output file deleted: {0}",  outputFile.getName());
+        File fileToCheck = new File(this.outputFile);
+        if(fileToCheck.exists()){
+            if (fileToCheck.delete()) {
+                logger.log(Level.INFO,"Output file deleted: {0}",  fileToCheck.getName());
             } else {
-                logger.log(Level.WARNING,"Failed to delete output file: {0}",  outputFile.getName());
+                logger.log(Level.WARNING,"Failed to delete output file: {0}",  fileToCheck.getName());
             }
         }
     }
@@ -94,8 +94,7 @@ public class CSV2RDFTest {
     @DisplayName("Run method without any given arguments should fail")
     void testRunWithoutArguments() {
         try {
-            CSV2RDF csv2rdf = new CSV2RDF();
-            csv2rdf.run();
+            this.csv2rdf.run();
             Assert.fail();
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
@@ -122,15 +121,14 @@ public class CSV2RDFTest {
         files.add(this.outputFile);
         this.csv2rdf.files = files;
         this.csv2rdf.run();
-        File outputFile = new File(this.outputFile);
-        assertEquals(true,outputFile.exists());
+        File outputFilename = new File(this.outputFile);
+        assertEquals(true,outputFilename.exists());
     }
 
     @Test
     @DisplayName("Running with the example files should succeed")
     void testRunWithNonExistingFiles() {
         try {
-            CSV2RDF csv2rdf = new CSV2RDF();
             ArrayList<String> files = new ArrayList<>();
             files.add("examples/cars/template.tt");
             files.add("examples/cars/cars.cs");
