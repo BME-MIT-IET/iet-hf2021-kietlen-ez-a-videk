@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +64,7 @@ public class CSV2RDF implements Runnable {
 	private static final Charset INPUT_CHARSET = Charset.defaultCharset();
 	private static final Charset OUTPUT_CHARSET = Charsets.UTF_8;
 	private static final ValueFactory FACTORY = ValueFactoryImpl.getInstance();
+	private static Logger logger = Logger.getLogger(CSV2RDF.class.getName());
 
 	@Option(name = "--no-header", arity = 0, description = "If csv file does not contain a header row")
 	boolean noHeader = false;
@@ -88,10 +91,10 @@ public class CSV2RDF implements Runnable {
 		File templateFile = new File(files.get(0));
 		File inputFile = new File(files.get(1));
 		File outputFile =  new File(files.get(2));
-		System.out.println("CSV to RDF conversion started...");
-		System.out.println("Template: " + templateFile);
-		System.out.println("Input   : " + inputFile);
-		System.out.println("Output  : " + outputFile);
+		logger.log(Level.INFO, "CSV to RDF conversion started...");
+		logger.log(Level.INFO, "Template: {0}", templateFile);
+		logger.log(Level.INFO, "Input: {0}", inputFile);
+		logger.log(Level.INFO, "Output: {0}", outputFile);
 		
 		try {
 			Reader in = Files.newReader(inputFile, INPUT_CHARSET);
@@ -122,7 +125,7 @@ public class CSV2RDF implements Runnable {
 		catch (Exception err) {
 			throw new CustomRuntimeExtension("An error with the files occured during runtime.", err);
 		}
-		System.out.printf("Converted %,d rows to %,d triples%n", inputRows, outputTriples);
+		logger.log(Level.INFO, "Converted {0} rows to {1}  triples%n", new Object[] { inputRows , outputTriples }  );
 	}
 
 	private static char toChar(String value) {
@@ -409,6 +412,7 @@ public class CSV2RDF implements Runnable {
 		private final URI datatype;
 		private final String lang;
 
+
 		private TemplateLiteralGenerator(Literal literal, ValueProvider[] providers) {
 			super(literal.getLabel(), providers);
 
@@ -433,7 +437,7 @@ public class CSV2RDF implements Runnable {
 			                .build().parse(args).run();
 		}
 		catch (Exception e) {
-			System.err.println("ERROR: " + e.getMessage());
+			logger.log(Level.INFO, "ERROR: {0}", e.getMessage());
 			e.printStackTrace();
 		}
 	}
