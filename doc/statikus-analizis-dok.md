@@ -1,4 +1,4 @@
-A statikus analízishez már a laborokon megismert SonarLint programot választottuk. Ez a program számos hibát és figyelmeztetést jelzett számunkra, melyeket közül az összes relevánsat kijavítotottuk és a javítások minőségét, helyességét egymásnak leellenőriztük.
+A statikus analízishez már a laborokon megismert SonarLint plugint választottuk. Ez a plugin számos hibát és figyelmeztetést jelzett számunkra, melyeket közül az összes relevánsat kijavítotottuk és a javítások minőségét, helyességét egymásnak leellenőriztük.
 
 A program által feldobott hibákat, figyelmeztetéseket 5 nagy csopoortra lehet bontani.
 
@@ -10,3 +10,9 @@ A feltételes operátor egymásba ágyazására is jelzett hibát. A kód így s
 
 **3.**
 Egy másik csoportba az apró hibák tartoznak. Például a Java konvencióinak be nem tartásáért is kaptunk figyelmeztetéseket. Az osztályok deklarálásánál a static és abstract kulcsszavak voltak rossz sorrendben, ezeket javítottuk. A main függvényre is kaptunk figyelmeztetést, itt csak a kivétel "eldobását" kellett kitörölni, hiszen a függvényen belül minden alapból try-catch blokkban van.
+
+**4.**
+További javított SonarLint figyelmeztetés volt a System.out típusú log üzenetek felváltása valamilyen Logger objektummal. Itt a java.util.logging.Logger osztályt használtuk a logolásra, és az információs jellegű logüzenetek INFO szintű logokkal váltottuk fel.
+
+**4.**
+Az eredeti com.google.common.base.Charsets.UTF_8 típusú charset-et lecseréltük java.nio.charset.StandardCharsets.UTF_8 charsetre.
