@@ -174,7 +174,7 @@ public class CSV2RDF implements Runnable {
 			return sb.toString();
 		}
 
-		private ValueProvider valueProviderFor(String varName, List<String> cols) throws CreateValueProviderException {
+		private ValueProvider valueProviderFor(String varName, List<String> cols) {
 			if (varName.equalsIgnoreCase("_ROW_")) {
 				return new RowNumberProvider(); 
 			}
@@ -423,7 +423,7 @@ public class CSV2RDF implements Runnable {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		try {
 			Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
 			                .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
@@ -434,10 +434,4 @@ public class CSV2RDF implements Runnable {
 			e.printStackTrace();
 		}
 	}
-}
-
-class CreateValueProviderException extends Exception {
-	public CreateValueProviderException() {
-        super("An exception has been thrown failing to create value provider!");
-    }
 }
