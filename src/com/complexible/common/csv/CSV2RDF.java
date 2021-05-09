@@ -298,7 +298,7 @@ public class CSV2RDF implements Runnable {
 		}
 	}
 
-	private static abstract class ValueProvider {
+	private abstract static class ValueProvider {
 		 private final String placeholder = UUID.randomUUID().toString();
 		 private boolean isHash;
 
@@ -374,7 +374,7 @@ public class CSV2RDF implements Runnable {
 		}
 	}
 
-	private static abstract class TemplateValueGenerator<V extends Value> implements ValueGenerator<V> {
+	private abstract static class TemplateValueGenerator<V extends Value> implements ValueGenerator<V> {
 		private final String template;
 		private final ValueProvider[] providers;
 
