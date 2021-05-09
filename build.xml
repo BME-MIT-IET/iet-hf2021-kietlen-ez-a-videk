@@ -110,4 +110,12 @@
 		<sonar:sonar />
 	</target>
 
+	<target name = "test" depends = "compile">
+		<junit>
+			<classpath refid = "project.class.path" />
+			<formatter type = "brief" usefile = "false" />
+			<test name = "TestMessageUtil" />
+		</junit>
+	</target>
+
 </project>
