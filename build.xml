@@ -7,6 +7,7 @@
 	<property name="build" location="build"/>
 	<property name="dist" location="dist"/>
 
+
 	<property name="project.name" value="csv2rdf"/>
 	<property name="project.version" value="0.1"/>
 
@@ -18,6 +19,8 @@
 	<property name="sonar.sources" value="src" />
 	<property name="sonar.java.binaries" value="build" />
 	<property name="sonar.java.libraries" value="lib/*.jar" />
+
+
 
 	<path id="project.class.path">
 		<pathelement location="lib/"/>
@@ -43,7 +46,7 @@
 	</target>
 
 	<target name="compile" depends="init">
-		<javac source="1.6" target="1.6" destdir="${build}" debug="yes"
+		<javac source="1.7" target="1.7" destdir="${build}" debug="yes"
 			deprecation="yes">
 			<classpath refid="project.class.path"/>
 			<src path="${src}"/>
@@ -114,7 +117,7 @@
 		<junit>
 			<classpath refid = "project.class.path" />
 			<formatter type = "brief" usefile = "false" />
-			<test name = "TestMessageUtil" />
+			<test name = "test.CSV2RDFTest" />
 		</junit>
 	</target>
 

@@ -85,6 +85,9 @@ public class CSV2RDF implements Runnable {
 	private int outputTriples = 0;
 
 	public void run() {
+
+		if(files == null) throw new IllegalArgumentException("Missing arguments, no given arguments found.");
+
 		Preconditions.checkArgument(files.size() >= 3, "Missing arguments");
 		Preconditions.checkArgument(files.size() <= 3, "Too many arguments");
 
