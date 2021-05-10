@@ -31,12 +31,13 @@ public class CSV2RDFTest {
     @AfterEach
     public void cleanup(){
         File fileToCheck = new File(this.outputFile);
-        if(fileToCheck.exists()){
-            if (fileToCheck.delete()) {
-                logger.log(Level.INFO,"Output file deleted: {0}",  fileToCheck.getName());
-            } else {
-                logger.log(Level.WARNING,"Failed to delete output file: {0}",  fileToCheck.getName());
+        try {
+            if (fileToCheck.exists()) {
+                java.nio.file.Files.delete(fileToCheck.toPath());
+                logger.log(Level.INFO, "Output file deleted: {0}", fileToCheck.getName());
             }
+        }catch (Exception e){
+            logger.log(Level.WARNING , "Failed to delete output file: {0}", fileToCheck.getName());
         }
     }
 
