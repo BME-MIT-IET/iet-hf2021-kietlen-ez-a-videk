@@ -19,6 +19,7 @@
 	<property name="sonar.sources" value="src" />
 	<property name="sonar.java.binaries" value="build" />
 	<property name="sonar.java.libraries" value="lib/*.jar" />
+	<property name="sonar.junit.reportsPath" value="build/test-report" />
 
 
 	<fail message="Ant 1.10.4+ is required!">
