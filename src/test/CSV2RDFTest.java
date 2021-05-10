@@ -1,13 +1,10 @@
 package test;
 
 import com.complexible.common.csv.*;
-import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.openrdf.rio.ParserConfig;
 import org.openrdf.rio.helpers.BasicParserSettings;
 
@@ -43,10 +40,6 @@ public class CSV2RDFTest {
         }
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-
     @Test
     @DisplayName("One letter string to char conversion should work")
     void testToCharWithSingleChar() {
@@ -57,23 +50,17 @@ public class CSV2RDFTest {
     @Test
     @DisplayName("Multiple letter to char conversion should fail")
     void testToCharWithMultipleChars() {
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             CSV2RDF.toChar("abc");
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
-        }
+        });
     }
 
     @Test
     @DisplayName("Empty string to char conversion should fail")
     void testToCharWithEmptyInput() {
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             CSV2RDF.toChar("");
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
-        }
+        });
     }
 
     @Test
@@ -88,17 +75,6 @@ public class CSV2RDFTest {
     void testFailOnUnknownLanguages() {
         ParserConfig config = CSV2RDF.getParserConfig();
         assertEquals(false, config.get(BasicParserSettings.FAIL_ON_UNKNOWN_LANGUAGES));
-    }
-
-    @Test
-    @DisplayName("Run method without any given arguments should fail")
-    void testRunWithoutArguments() {
-        try {
-            this.csv2rdf.run();
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
-        }
     }
 
     @Test
@@ -126,19 +102,17 @@ public class CSV2RDFTest {
     }
 
     @Test
-    @DisplayName("Running with the example files should succeed")
+    @DisplayName("Running with non-existent files should fail")
     void testRunWithNonExistingFiles() {
-        try {
-            ArrayList<String> files = new ArrayList<>();
-            files.add("examples/cars/template.tt");
-            files.add("examples/cars/cars.cs");
-            files.add(this.outputFile);
-            this.csv2rdf.files = files;
+        ArrayList<String> files = new ArrayList<>();
+        files.add("non-existent-file1");
+        files.add("non-existent-file2");
+        files.add(this.outputFile);
+        this.csv2rdf.files = files;
+
+        assertThrows(Exception.class, () -> {
             this.csv2rdf.run();
-            Assert.fail();
-        } catch (Exception e) {
-            logger.info("Exception thrown, test succeeded.");
-        }
+        });
     }
 
 
