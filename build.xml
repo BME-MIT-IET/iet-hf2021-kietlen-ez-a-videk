@@ -19,8 +19,16 @@
 	<property name="sonar.sources" value="src" />
 	<property name="sonar.java.binaries" value="build" />
 	<property name="sonar.java.libraries" value="lib/*.jar" />
+	<property name="sonar.junit.reportsPath" value="build/test-report" />
 
 
+	<fail message="Ant 1.10.4+ is required!">
+		<condition>
+			<not>
+					<antversion atleast="1.10.4"/>
+			</not>
+		</condition>
+	</fail>
 
 	<path id="project.class.path">
 		<pathelement location="lib/"/>
@@ -46,8 +54,8 @@
 	</target>
 
 	<target name="compile" depends="init">
-		<javac source="1.7" target="1.7" destdir="${build}" debug="yes"
-			deprecation="yes">
+		<javac source="1.8" target="1.8" classpathref="project.class.path" srcdir="${src}" destdir="${build}"
+			includeantruntime="false">
 			<classpath refid="project.class.path"/>
 			<src path="${src}"/>
 		</javac>
@@ -114,11 +122,10 @@
 	</target>
 
 	<target name = "test" depends = "compile">
-		<junit>
+		<junitlauncher haltOnFailure="true" printSummary="true">
 			<classpath refid = "project.class.path" />
-			<formatter type = "brief" usefile = "false" />
-			<test name = "test.CSV2RDFTest" />
-		</junit>
+			<test name="test.CSV2RDFTest"/>
+		</junitlauncher>
 	</target>
 
 </project>

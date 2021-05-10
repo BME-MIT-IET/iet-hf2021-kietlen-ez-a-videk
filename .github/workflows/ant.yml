@@ -21,8 +21,10 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+    - name: Run JUnit tests
+      run: ./test
     - name: Build and analyze with Ant
       env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: ant -noinput -buildfile build.xml sonar
+      run: ant -noinput sonar
