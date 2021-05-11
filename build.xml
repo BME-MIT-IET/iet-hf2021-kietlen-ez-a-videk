@@ -20,7 +20,7 @@
 	<property name="sonar.java.binaries" value="build" />
 	<property name="sonar.java.libraries" value="lib/*.jar" />
 	<property name="sonar.junit.reportsPath" value="build/test-report" />
-	<property name="sonar.exclusions" value="**/*.java" />
+	<property name="sonar.coverage.exclusions" value="**/*.java" />
 
 
 
