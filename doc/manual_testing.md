@@ -8,14 +8,16 @@ A csv2rdf feladata egy RDF output generálása CSV/TSV fájlokból. A felhaszná
 
 1.	Elfogadja a bemeneti fájlokat
 2.	Nem fogad el nem megfelelő formátumú bemenetet
-3.	A kimenete egy RDF output 
-4.	Az output megfelel a megadott mintának
+3.  Nem fogad el nem megfelelő formátumú sablont
+4.	A kimenete egy RDF output 
+5.	Az output megfelel a megadott mintának
 
 <h3>A fentiek biztosítására az alábbi teszt esetekre lesz szükség:</h3>
 
 1.	Könyvtár használata alkalmas fájlokon azzal az elvárással, hogy lefut
 2.	Könyvtár használata alkalmatlan fájlokon azzal az elvárással, hogy hibát jelez
-3.	Könyvtár kimenetének formai vizsgálata helyes bemeneteken fájlformátumra és tartalomra
+3.	Könyvtár használata nem kapcsolódó sablon és bemenet fájlon azzal az elvárással, hogy hibát jelez
+4.	Könyvtár kimenetének formai vizsgálata helyes bemeneteken fájlformátumra és tartalomra
 
 A fent felsorolt teszt esetekre a JUnit keretrendszert fogjuk használni, azokat a dolgokoat pedig, amiket célszerűbb személyesen ellenőrizni, azokat mi fogjuk megnézni.
 
@@ -26,15 +28,20 @@ A kész tesztek kódja a tests/ManualTests.java fileban található és a fenti 
  
  * SuitableInput
 
-<h4>Könyvtár alkalmatlan alkalmas fájlokon</h4>
+<h4>Könyvtár alkalmatlan fájlokon</h4>
  
  * IncorrectInputName
  * IncorrectInputType
  * IncorrectInput
+ * IncorrectTemplateContent
+ 
+<h4>Könyvtár nem kapcsolódó sablonon és bemeneti fájlon</h4>
+
+ * UnmatchingTemplateAndCsv
 
 <h4>Könyvtár kimenetének formai vizsgálata</h4>
 
-* CorrectOutput
+ * CorrectOutput
 
 <h2>Tesztek Dokumentációja</h2>
 Ebben a fejezetben a megírt teszteket és a kapott eredményeket fejtjük ki.
@@ -51,7 +58,13 @@ Ebben a fejezetben a megírt teszteket és a kapott eredményeket fejtjük ki.
  
  A második az *IncorrectInputType*, ez a teszt szándékosan rossz típusú filet ad meg az argumentumok közözött ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
  
- A harmadik az *IncorrectInput*, ami szándékosan rossz file-t ad meg llenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
+ A harmadik az *IncorrectInput*, ami szándékosan rossz file-t ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
+
+ A negyedik az *IncorrectTemplateContent*, ami szándékosan tartalmilag hibás sablon fájlt ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
+ 
+<h4>Könyvtár nem kapcsolódó sablonon és bemeneti fájlon</h4>
+
+ Ezt a tesztesetet a *UnmatchingTemplateAndCsv* tesztel vizsgáltuk, ami két helyes tartalmú, de különböző struktúrájú modelt leíró fájlt ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
 
 <h4>Könyvtár kimenetének formai vizsgálata</h4>
 
