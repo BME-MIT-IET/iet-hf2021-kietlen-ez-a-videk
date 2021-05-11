@@ -49,7 +49,7 @@ Ebben a fejezetben a megírt teszteket és a kapott eredményeket fejtjük ki.
  
  Az első az *IncorrectInputName*, ez a teszt szándékosan rossz nevet (nem létező filet) ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
  
- A második az *IncorrectInputType*, ez a teszt szándékosan rossz típusú filet ad meg az argumentumok közözött ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál sikeresen létrejön a kimeneti file, ami egy váratlan jelenség. A probléma további vizsgálata során arra jutottunk, hogy nem számít a file kiterjesztése, ha a tartalma jó, és emiatt ez a teszt sikertelen. Ezen a ponton értesítettük a csapatnak a problémában felelős részét és megbeszéltük mi legyen az elvárások és a jelenlegi állapot közötti eltérés sorsa. 
+ A második az *IncorrectInputType*, ez a teszt szándékosan rossz típusú filet ad meg az argumentumok közözött ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
  
  A harmadik az *IncorrectInput*, ami szándékosan rossz file-t ad meg llenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
 
