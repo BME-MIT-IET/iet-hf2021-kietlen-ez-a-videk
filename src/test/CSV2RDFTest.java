@@ -16,8 +16,6 @@ import io.airlift.command.Cli;
 import io.airlift.command.Help;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +25,9 @@ public class CSV2RDFTest {
 
     private CSV2RDF csv2rdf;
     private static Logger logger = Logger.getLogger(CSV2RDFTest.class.getName());
-    private String outputFile = "cars.ttl";
+    private static String outputFile = "cars.ttl";
+    private static String exampleInputTtl = "examples/cars/template.ttl";
+
 
     @BeforeEach
     public void initEach(){
@@ -89,7 +89,7 @@ public class CSV2RDFTest {
     @DisplayName("Running with the example files should succeed")
     void testRun() {
         ArrayList<String> files = new ArrayList<>();
-        files.add("examples/cars/template.ttl");
+        files.add(exampleInputTtl);
         files.add("examples/cars/cars.csv");
         files.add(outputFile);
         this.csv2rdf.files = files;
@@ -100,7 +100,7 @@ public class CSV2RDFTest {
     @DisplayName("Checking output file after run should succeed")
     void testOutputFileAfterRun() {
         ArrayList<String> files = new ArrayList<>();
-        files.add("examples/cars/template.ttl");
+        files.add(exampleInputTtl);
         files.add("examples/cars/cars.csv");
         files.add(this.outputFile);
         this.csv2rdf.files = files;
@@ -125,8 +125,8 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Running where files are correct")
-    public void SuitableInput() {
-        String[] args = { "examples/cars/template.ttl", "examples/cars/cars.csv", "cars.ttl"};
+    public void suitableInput() {
+        String[] args = { exampleInputTtl, "examples/cars/cars.csv", "cars.ttl"};
         Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
                 .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
                 .build().parse(args).run();
@@ -134,8 +134,8 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Running where input file does not exist")
-    public void IncorrectInputName() {
-        String[] args = {"examples/cars/template.ttl", "examples/cars/asd.csv", "cars.ttl"};
+    public void incorrectInputName() {
+        String[] args = {exampleInputTtl, "examples/cars/asd.csv", "cars.ttl"};
         Assertions.assertThrows(Exception.class, () -> {
             Cli.<Runnable>builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
                     .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
@@ -144,8 +144,8 @@ public class CSV2RDFTest {
     }
     @Test
     @DisplayName("Running where input file's extension is not correct")
-    public void IncorrectInputType() {
-        String[] args = { "examples/cars/template.ttl", "examples/cars/cars.docx", "cars.ttl"};
+    public void incorrectInputType() {
+        String[] args = { exampleInputTtl, "examples/cars/cars.docx", "cars.ttl"};
         Assertions.assertThrows(Exception.class, () -> {
             Cli.<Runnable>builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
                     .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
@@ -155,8 +155,8 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Running where input file has incorrect content")
-    public void IncorrectInput() {
-        String[] args = { "examples/cars/template.ttl", "examples/cars/carsModified.csv", "cars.ttl"};
+    public void incorrectInput() {
+        String[] args = { exampleInputTtl, "examples/cars/carsModified.csv", "cars.ttl"};
         Assertions.assertThrows(Exception.class, () -> {
             Cli.<Runnable>builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
                     .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
@@ -166,7 +166,7 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Running where the template file's content is incorrect")
-    public void IncorrectTemplateContent() {
+    public void incorrectTemplateContent() {
         String[] args = { "examples/cars/templateModified.ttl", "examples/cars/cars.csv", "cars.ttl"};
         Assertions.assertThrows(Exception.class, () -> {
             Cli.<Runnable>builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
@@ -178,7 +178,7 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Running where the template file's content and the input file's content does not correlate")
-    public void UnmatchingTemplateAndCsv() {
+    public void unmatchingTemplateAndCsv() {
         String[] args = { "examples/cars/templateModified1.ttl", "examples/cars/cars.csv", "cars.ttl"};
         Assertions.assertThrows(Exception.class, () -> {
             Cli.<Runnable>builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
@@ -189,8 +189,8 @@ public class CSV2RDFTest {
 
     @Test
     @DisplayName("Checking output file is generated and correct extension")
-    public void CorrectOutput() {
-        String[] args = { "examples/cars/template.ttl", "examples/cars/cars.csv", "cars.ttl"};
+    public void correctOutput() {
+        String[] args = { exampleInputTtl, "examples/cars/cars.csv", "cars.ttl"};
         Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
                 .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
                 .build().parse(args).run();
