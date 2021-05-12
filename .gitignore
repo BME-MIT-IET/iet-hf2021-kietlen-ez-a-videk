@@ -13,3 +13,6 @@
 /bin
 /build
 /dist
+
+# ant folder
+/apache-ant*

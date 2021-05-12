@@ -31,6 +31,7 @@ public class ManualTests {
         });
     }
 
+
     @Test
     @DisplayName("Running where input file has incorrect content")
     public void IncorrectInput() {

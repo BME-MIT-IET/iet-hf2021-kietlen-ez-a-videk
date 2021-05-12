@@ -8,7 +8,7 @@ A csv2rdf feladata egy RDF output generálása CSV/TSV fájlokból. A felhaszná
 
 1.	Elfogadja a helyes bemeneti fájlokat
 2.	Nem fogad el nem megfelelő formátumú bemenetet
-3. Nem fogad el nem megfelelő formátumú sablont
+3.  Nem fogad el nem megfelelő formátumú sablont
 4.	A kimenete egy RDF output 
 5.	Az output megfelel a megadott mintának
 
@@ -52,10 +52,11 @@ Ebben a fejezetben a megírt teszteket és a kapott eredményeket fejtjük ki.
  Ezt a tesztesetet három teszt is támogatja:
  
  Az első az *IncorrectInputName*, ez a teszt szándékosan rossz nevet (nem létező filet) ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
- 
+
  A második az *IncorrectInput*, ami szándékosan rossz file-t ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
 
  A harmadik az *IncorrectTemplateContent*, ami szándékosan tartalmilag hibás sablon fájlt ad meg ellenőrizve, hogy a program észreveszi-e a problémát. Ennél a tesztnél futtatásnál egy exceptiont kapunk, azaz nem marad észrevétlen a hiba, sikeres a tesztünk.
+
  
 <h4>Könyvtár nem kapcsolódó sablonon és bemeneti fájlon</h4>
 
@@ -65,6 +66,7 @@ Ebben a fejezetben a megírt teszteket és a kapott eredményeket fejtjük ki.
 
 Ebben a tesztesetben azt ellenőrizzük, hogy helyes bemenet esetén a kimenet létrejön, és formailag megfelel a mintának. Ezt a *CorrectOutput* teszt vizsgája, és akkor tér vissza sikeresen ha a file létrejön. Esetünkben létrejön a file, és ha formailag ellenőrizzük, akkor meg is felel a mintának, így a sikeres a tesztünk.
 
+
 <h3>A Tesztek eredményei táblázatosan:</h3>
 
 Teszteset neve | Teszteset eredménye
@@ -73,3 +75,4 @@ Könyvtár használata alkalmas fájlokon | Sikeres
 Könyvtár használata alkalmatlan fájlokon | Sikeres
 Könyvtár használata nem kapcsolódó sablon és bemenet fájlon | Sikeres
 Könyvtár kimenetének formai vizsgálata | Sikeres
+

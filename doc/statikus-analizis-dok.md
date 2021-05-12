@@ -14,5 +14,8 @@ Egy másik csoportba az apró hibák tartoznak. Például a Java konvencióinak 
 **4.**
 További javított SonarLint figyelmeztetés volt a System.out típusú log üzenetek felváltása valamilyen Logger objektummal. Itt a java.util.logging.Logger osztályt használtuk a logolásra, és az információs jellegű logüzenetek INFO szintű logokkal váltottuk fel.
 
-**4.**
+**5.**
 Az eredeti com.google.common.base.Charsets.UTF_8 típusú charset-et lecseréltük java.nio.charset.StandardCharsets.UTF_8 charsetre.
+
+**6.**
+A java.nio.file.Files.delete() metódus használata a tesztek utáni kimeneti fájlok törlésekor.
