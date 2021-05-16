@@ -1,3 +1,6 @@
+<h1>A kódon történt javítások statikus analízis mentén</h1>
+
+
 A statikus analízishez már a laborokon megismert SonarLint plugint választottuk. Ez a plugin számos hibát és figyelmeztetést jelzett számunkra, melyeket közül az összes relevánsat kijavítotottuk és a javítások minőségét, helyességét egymásnak leellenőriztük.
 
 A program által feldobott hibákat, figyelmeztetéseket 6 nagy csopoortra lehet bontani.
