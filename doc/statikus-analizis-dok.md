@@ -19,3 +19,5 @@ Az eredeti com.google.common.base.Charsets.UTF_8 típusú charset-et lecserélt�
 
 **6.**
 A java.nio.file.Files.delete() metódus használata a tesztek utáni kimeneti fájlok törlésekor.
+
+A fent megemlített példák mellett folyamatosan javítottuk a magunk által írt kódokban keletkezett code smelleket a CI-ba kötött sonar analízisek mentén. A folyamat menete az volt, hogy merge request létrehozáskor a reviewer átnézte a lefutott sonar analízis eredményét, ezzel együtt a code smelleket is, és ha voltak olyan elemek amelyek szerinte javításra szorultak, azt a pull requesten a review-ban megkérte a pull request létrehozójától.
