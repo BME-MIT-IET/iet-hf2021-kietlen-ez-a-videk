@@ -180,7 +180,7 @@ public class CSV2RDF implements Runnable {
 			return sb.toString();
 		}
 
-		private ValueProvider valueProviderFor(String varName, List<String> cols) throws Exception {
+		private ValueProvider valueProviderFor(String varName, List<String> cols) {
 			if (varName.equalsIgnoreCase("_ROW_")) {
 				return new RowNumberProvider(); 
 			}
